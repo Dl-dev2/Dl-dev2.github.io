@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DL DeV - Services</title>
+  <title>DL DeV - Création de sites web et Beats Yamaha</title>
+  <meta name="description" content="DL DeV propose des services professionnels en création de sites web modernes et en vente de beats exclusifs pour piano Yamaha.">
+  <meta name="keywords" content="création site web, beat Yamaha, site vitrine, ecommerce, SEO, DL DeV">
+  <meta name="author" content="DL DeV">
+  <link rel="canonical" href="https://dldev.cm" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <header>
-  <div class="logo">DL <span class="dev">DeV</span></div>
-  <div class="hamburger" id="hamburger">&#9776;</div>
+  <div class="logo" title="DL DeV - Création de sites & Beats Yamaha">DL <span class="dev">DeV</span></div>
+  <div class="hamburger" id="hamburger" aria-label="Menu">&#9776;</div>
   <nav id="nav-menu">
     <a href="#hero">Accueil</a>
     <a href="#services">Services</a>
@@ -24,10 +28,11 @@
 </section>
 
 <section class="intro">
-  <p>DL DeV propose des solutions professionnelles en création de sites web et vente de beats pour piano Yamaha. Découvrez nos services et demandez votre devis personnalisé.</p>
+  <p>DL DeV propose des solutions professionnelles en <strong>création de sites web</strong> et <strong>vente de beats pour piano Yamaha</strong>. Découvrez nos services et demandez votre devis personnalisé.</p>
 </section>
 
 <section id="services">
+  <h2>Nos Services</h2>
   <article class="service">
     <h3>Création de sites web</h3>
     <ul>
@@ -51,9 +56,9 @@
 </section>
 
 <!-- Modal formulaire -->
-<div class="modal" id="modalForm">
+<div class="modal" id="modalForm" aria-hidden="true">
   <div class="modal-content">
-    <span class="close-btn" id="closeModal">&times;</span>
+    <span class="close-btn" id="closeModal" aria-label="Fermer le formulaire">&times;</span>
     <h2>Demande de devis</h2>
     <form id="formDevis">
       <label for="name">Nom complet</label>
@@ -72,26 +77,23 @@
 
 <section id="contact">
   <h2>Contactez-nous</h2>
-  <p>Numéro WhatsApp : <a href="https://wa.me/237656785832" target="_blank">+237 656 785 832</a></p>
+  <p>Numéro WhatsApp : <a href="https://wa.me/237656785832" target="_blank" rel="noopener noreferrer">+237 656 785 832</a></p>
   <p>Email : <a href="mailto:contact@dldev.cm">contact@dldev.cm</a></p>
 </section>
 
 <script>
-  // Gestion menu hamburger
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
   hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('open');
   });
 
-  // Modal form
   const modal = document.getElementById('modalForm');
   const closeModalBtn = document.getElementById('closeModal');
   const btnDeviss = document.querySelectorAll('.btnDevis');
   const btnContactHero = document.getElementById('btnContactHero');
   const serviceInput = document.getElementById('serviceSelected');
 
-  // Ouvre modal et met service dans champ
   btnDeviss.forEach(btn => {
     btn.addEventListener('click', () => {
       serviceInput.value = btn.getAttribute('data-service');
@@ -99,55 +101,46 @@
     });
   });
 
-  // Le bouton "Nous contacter" ouvre modal avec service vide
   btnContactHero.addEventListener('click', () => {
     serviceInput.value = '';
     modal.classList.add('show');
   });
 
-  // Fermer modal
   closeModalBtn.addEventListener('click', () => {
     modal.classList.remove('show');
   });
 
-  // Fermer modal si clic hors contenu
   modal.addEventListener('click', e => {
     if (e.target === modal) {
       modal.classList.remove('show');
     }
   });
 
-  // Envoi du formulaire via WhatsApp
   const form = document.getElementById('formDevis');
   form.addEventListener('submit', e => {
     e.preventDefault();
     const name = form.name.value.trim();
-    const email = form.email.value.trim();
     const phone = form.phone.value.trim();
     const service = form.serviceSelected.value.trim() || "Non spécifié";
 
-    if (!name || !email || !phone) {
+    if (!name || !phone) {
       alert('Veuillez remplir tous les champs correctement.');
       return;
     }
 
-    const message = 
+    const message =
       `Bonjour, je souhaite un devis pour le service suivant:\n` +
       `${service}\n\n` +
       `Mes coordonnées:\n` +
       `Nom: ${name}\n` +
-      `Email: ${email}\n` +
       `Téléphone: ${phone}`;
 
-    // encode URI composant et construction url WhatsApp
     const url = `https://wa.me/237656785832?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
-
-    // Fermeture modal et reset formulaire
     modal.classList.remove('show');
     form.reset();
   });
 </script>
 
 </body>
-</html>
+                    </html>
